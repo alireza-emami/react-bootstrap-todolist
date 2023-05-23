@@ -1,6 +1,6 @@
-.App {
+/* .App {
   text-align: center;
-}
+} */
 
 .App-logo {
   height: 40vmin;
@@ -35,4 +35,18 @@
   to {
     transform: rotate(360deg);
   }
+}
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+}
+.title{
+  text-align: center;
+}
+
+.input1{
+width: 370px;
+height: 35px;
 }
