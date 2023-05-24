@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+
 
 const TodolistInputs = ({ addtext }) => {
     const [title, seTitle] = useState('')
@@ -9,21 +12,31 @@ const TodolistInputs = ({ addtext }) => {
         addtext(title)
         seTitle('')
     }
+    const [showA, setShowA] = useState(true);
+    const [showB, setShowB] = useState(true);
+
     return (
         <div className='d-flex justify-content-center align-items-center' >
-            <Card style={{ width: '30rem'}}>
+            <Card style={{ width: '30rem' }}>
                 <Card.Body >
-                    <Card.Title className='title'>Card Title</Card.Title>
+                    <Card.Header className='title'>Todolist</Card.Header>
                     <form onSubmit={handelsubmit}>
 
                         <div className='form'>
-                            <input className='input1' type='text' required value={title}
-                                onChange={(e) => { seTitle(e.target.value) }}
-                            ></input>
-                            {/* <input className='input2' type='submit'></input> */}
-                            <Button variant="warning" type='submit'>submit</Button>{' '}
+                            <InputGroup className="mb-3">
+                                <Form.Control
+                                    aria-label="Example text with button addon"
+                                    aria-describedby="basic-addon1"
+                                    required value={title}
+                                    onChange={(e) => { seTitle(e.target.value) }}
+                                    placeholder='Enter your new todo'
+                                />
+                                <Button variant="outline-secondary" type='submit' id="button-addon1">
+                                    submit
+                                </Button>
+                                
+                            </InputGroup>
                         </div>
-
                     </form>
                 </Card.Body>
             </Card>
