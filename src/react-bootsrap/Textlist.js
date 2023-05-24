@@ -5,7 +5,7 @@ import CloseButton from 'react-bootstrap/CloseButton';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
-
+// import { useState, useEffect } from 'react';
 
 const Textlist = () => {
     const [texts, settext] = useState([]);
@@ -19,6 +19,10 @@ const Textlist = () => {
     const clearall = () => {
         settext([]);
     }
+    useEffect(() => {
+        localStorage.setItem('items', JSON.stringify(texts))
+        console.log(texts)
+      })
     return (
         <div className='d-flex justify-content-center align-items-center' >
             <ListGroup as="ol" numbered>
@@ -43,3 +47,4 @@ const Textlist = () => {
 };
 
 export default Textlist;
+
