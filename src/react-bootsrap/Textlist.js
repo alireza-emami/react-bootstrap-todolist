@@ -8,23 +8,22 @@ import Form from 'react-bootstrap/Form';
 
 
 const Textlist = () => {
-    const [texts, settext] = useState([])
+    const [texts, settext] = useState([]);
     const addtext = (title) => {
-        settext([...texts, { title }])
+        settext([...texts, { title }]);
     }
     const removeItem = (index) => {
         texts.splice(index, 1);
         settext([...texts]);
     }
     const clearall = () => {
-        settext([])
+        settext([]);
     }
     return (
         <div className='d-flex justify-content-center align-items-center' >
             <ListGroup as="ol" numbered>
                 <TodolistInputs addtext={addtext} />
                 {texts.map((item, index) =>
-                    
                     <ListGroup.Item
                         style={{ width: '30rem' }}
                         as="li"
@@ -36,13 +35,11 @@ const Textlist = () => {
                             <Form.Check aria-label="option 1" />
                             <CloseButton onClick={() => removeItem(index)} />
                         </div>
-
                     </ListGroup.Item>)}
                 <Button onClick={clearall} variant="outline-danger">clear all</Button>{' '}
             </ListGroup>
         </div>
-
     );
-}
+};
 
 export default Textlist;

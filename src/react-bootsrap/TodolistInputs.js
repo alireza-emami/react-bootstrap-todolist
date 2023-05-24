@@ -6,22 +6,18 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 
 const TodolistInputs = ({ addtext }) => {
-    const [title, seTitle] = useState('')
+    const [title, seTitle] = useState('');
     const handelsubmit = (e) => {
-        e.preventDefault()
-        addtext(title)
-        seTitle('')
+        e.preventDefault();
+        addtext(title);
+        seTitle('');
     }
-    const [showA, setShowA] = useState(true);
-    const [showB, setShowB] = useState(true);
-
     return (
         <div className='d-flex justify-content-center align-items-center' >
             <Card style={{ width: '30rem' }}>
                 <Card.Body >
                     <Card.Header className='title'>Todolist</Card.Header>
                     <form onSubmit={handelsubmit}>
-
                         <div className='form'>
                             <InputGroup className="mb-3">
                                 <Form.Control
@@ -34,15 +30,13 @@ const TodolistInputs = ({ addtext }) => {
                                 <Button variant="outline-secondary" type='submit' id="button-addon1">
                                     submit
                                 </Button>
-                                
                             </InputGroup>
                         </div>
                     </form>
                 </Card.Body>
             </Card>
         </div>
-
     );
-}
+};
 
 export default TodolistInputs;
