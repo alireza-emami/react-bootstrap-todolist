@@ -21,8 +21,8 @@ const Textlist = () => {
     }
     useEffect(() => {
         localStorage.setItem('items', JSON.stringify(texts))
-        console.log(texts)
-      })
+
+      },[texts]);
     return (
         <div className='d-flex justify-content-center align-items-center' >
             <ListGroup as="ol" numbered>
