@@ -31,7 +31,6 @@ const Textlist = () => {
                     <ListGroup.Item
                         style={{ width: '30rem' }}
                         as="li"
-                        // className="d-flex justify-content-space-between align-items-center "
                         className='group1'
                     >
                         <label class="form-check-label m"  > {item.title} </label>
