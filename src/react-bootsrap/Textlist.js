@@ -8,39 +8,42 @@ import Form from 'react-bootstrap/Form';
 // import { useState, useEffect } from 'react';
 
 const Textlist = () => {
-    const [texts, settext] = useState([]);
+    const localValues = JSON.parse(localStorage.getItem('items') || '[]');
+    const [texts, settext] = useState(localValues);
     const addtext = (title) => {
-        settext([...texts, { title }]);
+        const newtext = [...texts, { title }];
+        settext(newtext);
+        localStorage.setItem('items', JSON.stringify(newtext))
     }
     const removeItem = (index) => {
         texts.splice(index, 1);
+        const newtext = [...texts];
         settext([...texts]);
+        localStorage.setItem('items', JSON.stringify(newtext))
     }
     const clearall = () => {
         settext([]);
+        localStorage.setItem('items', JSON.stringify([]))
     }
-    useEffect(() => {
-        localStorage.setItem('items', JSON.stringify(texts))
-
-      },[texts]);
     return (
-        <div className='d-flex justify-content-center align-items-center' >
-            <ListGroup as="ol" numbered>
+        <div className='d-flex justify-content-center  ' >
+            <ListGroup as="ol" numbered     >
                 <TodolistInputs addtext={addtext} />
                 {texts.map((item, index) =>
                     <ListGroup.Item
-                        style={{ width: '30rem' }}
+                        style={{ width: '24rem' }}
                         as="li"
-                        className='group1'
+                        className='group1 '
+
                     >
                         <label class="form-check-label m"  > {item.title} </label>
                         <div className='group2'>
-                            <Form.Check aria-label="option 1" />
                             <CloseButton onClick={() => removeItem(index)} />
                         </div>
                     </ListGroup.Item>)}
-                <Button onClick={clearall} variant="outline-danger">clear all</Button>{' '}
+                <Button style={{ width: '24rem' }} className='clear' onClick={clearall} variant="outline-danger">clear all</Button>
             </ListGroup>
+
         </div>
     );
 };

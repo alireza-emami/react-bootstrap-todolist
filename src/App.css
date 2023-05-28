@@ -50,8 +50,18 @@ height: 35px;
 .group1{
   display: flex;
   justify-content: space-between;
-
 }
 .group2{
   display: flex;
 }
+/* .clear{
+  display: flex;
+  width: 25rem;
+  height: 2.5rem;
+  align-items: end;
+  justify-content: center;
+  /* justify-selft;f: le */
+  /* margin-right: 200px; */
+
+
+/* } / */

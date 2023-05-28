@@ -14,7 +14,7 @@ const TodolistInputs = ({ addtext }) => {
     }
     return (
         <div className='d-flex justify-content-center align-items-center' >
-            <Card style={{ width: '30rem' }}>
+            <Card style={{ width: '24rem' }}>
                 <Card.Body >
                     <Card.Header className='title'>Todolist</Card.Header>
                     <form onSubmit={handelsubmit}>
