@@ -1,29 +1,45 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import Textlist from './components/Textlist';
+import ItemsList from './components/ItemsList';
 import TodolistInputs from './components/TodolistInputs';
 import Button from 'react-bootstrap//Button';
+import Card from 'react-bootstrap/Card';
+
 function App() {
   const localValues = JSON.parse(localStorage.getItem('items') || '[]');
-  const [texts, settext] = useState(localValues);
+  const [items, setItems] = useState(localValues);
   const addtext = (title) => {
-    const newtext = [...texts, { title }];
-    settext(newtext);
-    localStorage.setItem('items', JSON.stringify(newtext))
+    const newItems = [...items, { title, status: 'idle' }];
+    setItems(newItems);
+    localStorage.setItem('items', JSON.stringify(newItems))
   }
   const clearall = () => {
-    settext([]);
+    setItems([]);
     localStorage.setItem('items', JSON.stringify([]))
   }
   return (
-    <div className="app">
-      {/* input */}
-      <TodolistInputs addtext={addtext} />
-      {/* itemes list */}
-      <Textlist settext={settext}  texts={texts}/>
-      {/* actions */}
-      <Button style={{ width: '24rem' }} className='clear' onClick={clearall} variant="outline-danger">clear all</Button>
-    </div>
+    <Card className="app">
+      <Card.Header>Todo List</Card.Header>
+      <Card.Body style={{ padding: 0 }}>
+        <table>
+          <tbody>
+            <tr>
+              <td className='header'><TodolistInputs addtext={addtext} /></td>
+            </tr>
+            <tr>
+              <td className='main'>
+                <ItemsList setItems={setItems} items={items} />
+              </td>
+            </tr>
+            <tr>
+              <td className='footer'><Button onClick={clearall} variant="outline-danger">clear all</Button> </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </Card.Body>
+    </Card >
   );
 }
 
