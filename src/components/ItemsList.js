@@ -5,35 +5,41 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
 // import { useState, useEffect } from 'react';
 
-const ItemsList = ({ items, setItems }) => {
-    const removeItem = (index) => {
+const ItemsList = ({ items, setItems, filter }) => {
+    const removeItem = (id) => {
+        const index = items.findIndex(item => item.id == id);
         items.splice(index, 1);
         const newItems = [...items];
         setItems(newItems);
         localStorage.setItem('items', JSON.stringify(newItems))
     }
-    const changeStatus = (index) => {
+    const changeStatus = (id) => {
+        const index = items.findIndex(item => item.id == id);
         if (items[index].status == 'idle') {
             items[index].status = 'done';
         } else {
             items[index].status = 'idle';
         }
+        
         const newItems = [...items];
         setItems(newItems);
         localStorage.setItem('items', JSON.stringify(newItems))
     }
+    const submitDate= new Date().toDateString();
     return (
-        <ListGroup as="ul" className='list'    >
-            {items.map((item, index) =>
+        <ListGroup as="ul" className='list'>
+            {items.filter(function (i) { return i.status == filter }).map((item, index) =>
                 <ListGroup.Item
                     as="li"
-                    className={"d-flex justify-content-between align-items-start " + item.status}>
+                    className={"d-flex justify-content-between align-items-start "}>
                     <span>
-                        {index + 1}.<span style={{ 'text-decoration': item.status == 'done' ? 'line-through' : 'initial' }}>{item.title}</span>
+                        <b style={{ 'text-decoration': item.status == 'done' ? 'line-through' : 'initial' }}>{item.title}</b>
                     </span>
                     <div>
-                        <Form.Check inline onClick={() => changeStatus(index)} checked={item.status == 'done'} />
-                        <CloseButton onClick={() => removeItem(index)} />
+                        <small>{submitDate} &nbsp;</small>
+                        
+                        <Form.Check inline onClick={() => changeStatus(item.id)} checked={item.status == 'done'} />
+                        <CloseButton onClick={() => removeItem(item.id)} />
                     </div>
                 </ListGroup.Item>)
             }
