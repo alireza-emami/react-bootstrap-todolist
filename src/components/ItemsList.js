@@ -3,6 +3,7 @@ import { v4 as uuid } from 'uuid';
 import CloseButton from 'react-bootstrap/CloseButton';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
+import moment from 'moment';
 // import { useState, useEffect } from 'react';
 
 const ItemsList = ({ items, setItems, filter }) => {
@@ -25,7 +26,8 @@ const ItemsList = ({ items, setItems, filter }) => {
         setItems(newItems);
         localStorage.setItem('items', JSON.stringify(newItems))
     }
-    const submitDate= new Date().toDateString();
+    const submitDate= moment.duration(-120, "minutes").humanize(true);  
+    // new Date().toDateString();
     return (
         <ListGroup as="ul" className='list'>
             {items.filter(function (i) { return i.status == filter }).map((item, index) =>
