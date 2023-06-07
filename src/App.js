@@ -8,7 +8,7 @@ function App() {
   const localValues = JSON.parse(localStorage.getItem('items') || '[]');
   const [items, setItems] = useState(localValues);
   const addtext = (title) => {
-    const newItems = [...items, { title, status: 'idle', id: Date.now() , submitDate : new Date().toDateString() }];
+    const newItems = [...items, { title, status: 'idle', id: Date.now(), submitDate : new Date().toISOString()}];
     setItems(newItems);
     localStorage.setItem('items', JSON.stringify(newItems))
   }
@@ -16,6 +16,7 @@ function App() {
     setItems([]);
     localStorage.setItem('items', JSON.stringify([]))
   }
+
   return (
     <Card className="app">
       <Card.Header>Todo List</Card.Header>
